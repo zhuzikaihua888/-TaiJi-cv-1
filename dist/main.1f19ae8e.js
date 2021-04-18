@@ -118,36 +118,13 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"main.js":[function(require,module,exports) {
-//让js来操作写的html里面的demo
+//让js来操作写的html
 var demo = document.querySelector('#html');
 var style = document.querySelector('#style');
-var string = "\n/* \u4F60\u597D,\u6211\u53EB\u6BB5\u95F0\u5E73\n\u63A5\u4E0B\u6765\u6211\u6F14\u793A\u4E00\u4E0B\u6211\u7684\u524D\u7AEF\u529F\u5E95\n\u9996\u5148\u6211\u8981\u51C6\u5907\u4E00\u4E2Adiv\n */\n#div1{\n  border:1px solid red;\n  width:200px;\n  height:200px;\n}\n\n/*\u63A5\u4E0B\u6765\u6211\u628Adiv\u53D8\u6210\u4E00\u4E2A\u516B\u5366\u56FE\n\u6CE8\u610F\u770B\u597D\u4E86\n\u9996\u5148,\u6211\u628Adiv\u53D8\u6210\u4E00\u4E2A\u5706\n**/\n#div1{\n  border-radius:50%;\n  box-shadow:0 0 3px rgba(0,0,0,5);\n  border:none;\n\n}\n/*\u516B\u5366\u662F\u9634\u9633\u5F62\u6210\u7684\n*\u4E00\u9ED1\u4E00\u767D\n**/\n#div1{\n  background: linear-gradient(90deg,\n     rgba(255,255,255,1) 0%, \n  rgba(255,255,255,1) 50%, \n  rgba(0,0,0,1) 50%,\n  rgba(0,0,0,1) 100%);\n}\n/*\u52A0\u4E24\u4E2A\u795E\u79D8\u5C0F\u7403*/\n#div1::before{\n  width:100px;\n  height:100px;\n  top:0;\n  left:50%;\n  transform:translateX(-50%);\n  background:#000;\n  border-radius:50%;\n  background: radial-gradient(circle, \n    rgba(255,255,255,1) 0%,\n     rgba(255,255,255,1) 25%,\n      rgba(0,0,0,1) 25%,\n      rgba(0,0,0,1)100%);\n}\n#div1::after{\n  width:100px;\n  height:100px;\n\n  bottom:0;\n  left:50%;\n  transform:translateX(-50%);\n  background:#fff;\n  border-radius:50%;\n  background: radial-gradient(circle, rgba(0,0,0,1) 0%, \n  rgba(0,0,0,1) 25%, \n  rgba(255,255,255,1) 25%,\n  rgba(255,255,255,1) 100%,\n  rgba(0,0,0,1)100%);\n}\n"; //string[0].charCodeAt()看编码
-//把所有的里面的空格变为html里面的空格,正则表达式
-//string=string.replace(/\n/g,"<br>");
-//在创建空的字符串
+var string = "\n/* \u4F60\u597D,\u6211\u53EB\u6BB5\u95F0\u5E73\n\u63A5\u4E0B\u6765\u6211\u6F14\u793A\u4E00\u4E0B\u6211\u7684\u524D\u7AEF\u529F\u5E95\n\u9996\u5148\u6211\u8981\u51C6\u5907\u4E00\u4E2Adiv\n */\n#div1{\n  border:1px solid red;\n  width:200px;\n  height:200px;\n}\n/*\u63A5\u4E0B\u6765\u6211\u628Adiv\u53D8\u6210\u4E00\u4E2A\u516B\u5366\u56FE\n\u6CE8\u610F\u770B\u597D\u4E86\n\u9996\u5148,\u6211\u628Adiv\u53D8\u6210\u4E00\u4E2A\u5706\n**/\n#div1{\n  border-radius:50%;\n  box-shadow:0 0 3px rgba(0,0,0,5);\n  border:none;\n}\n/*\u516B\u5366\u662F\u9634\u9633\u5F62\u6210\u7684\n*\u4E00\u9ED1\u4E00\u767D\n**/\n#div1{\n  background: linear-gradient(90deg,\n  rgba(255,255,255,1) 0%, \n  rgba(255,255,255,1) 50%, \n  rgba(0,0,0,1) 50%,\n  rgba(0,0,0,1) 100%);\n}\n/*\u52A0\u4E24\u4E2A\u795E\u79D8\u5C0F\u7403*/\n#div1::before{\n  width:100px;\n  height:100px;\n  top:0;\n  left:50%;\n  transform:translateX(-50%);\n  background:#000;\n  border-radius:50%;\n  background: radial-gradient(circle, \n  rgba(255,255,255,1) 0%,\n  rgba(255,255,255,1) 25%,\n  rgba(0,0,0,1) 25%,\n  rgba(0,0,0,1)100%);\n}\n#div1::after{\n  width:100px;\n  height:100px;\n  bottom:0;\n  left:50%;\n  transform:translateX(-50%);\n  background:#fff;\n  border-radius:50%;\n  background: radial-gradient(circle, rgba(0,0,0,1) 0%, \n  rgba(0,0,0,1) 25%, \n  rgba(255,255,255,1) 25%,\n  rgba(255,255,255,1) 100%,\n  rgba(0,0,0,1)100%);\n}\n"; //在创建空的字符串
 
 var string2 = '';
-var n = -1; //让这个HTML的标签的内容等于什么,substring就是从第几个字符串开始,到第几个结束
-//demo.innerHTML=string.substring(0,n);
-//setInterval可以一直增加数字,setTimeout就可以用一次
-
-/* setInterval(()=>{
-   n=n+1;
-    demo.innerHTML=n
-},1000);  */
-//第二种写法模拟出setInterval
-
-/* let step=()=>{
-    setTimeout(() => {
-       n=n+1;
-       console.log(string[n]); 
-       demo.innerHTML=string.substring(0,n);
-       if(n-1<string.length){
-        step();
-       }else{
-    }  
-    }, 100);   
-} */
+var n = -1;
 
 var step = function step() {
   setTimeout(function () {
@@ -164,7 +141,7 @@ var step = function step() {
     }
 
     demo.innerHTML = string2;
-    style.innerHTML = string.substring(0, n); //js设置滚动条
+    style.innerHTML = string.substring(0, n); //js和html设置滚动条
 
     window.scrollTo(0, 99999);
     html.scrollTo(0, 99999);
@@ -175,16 +152,7 @@ var step = function step() {
   }, 10);
 };
 
-step(); //模拟一下使用css有没有用
-
-/* let style=document.querySelector('#style')
-setTimeout(() => {
-  style.innerHTML=`
-body{
-    color:Red;
-}
-  `; 
-}, 3000); */
+step();
 },{}],"../../../../AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -213,7 +181,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61041" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49542" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -389,4 +357,4 @@ function hmrAcceptRun(bundle, id) {
   }
 }
 },{}]},{},["../../../../AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js","main.js"], null)
-//# sourceMappingURL=/main.1f19ae8e.js.map
+//# sourceMappingURL=fuck/main.1f19ae8e.js.map
